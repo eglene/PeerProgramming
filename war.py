@@ -205,6 +205,7 @@ class WarGame:
                 self.second_pile.extend(cards)
                 print('Tie, but first player has no more cards.')
 
+# TODO: def main and maybe handle command-line arguments?
 
 game = WarGame(50)
 while not game.ended:
