@@ -1,5 +1,6 @@
 import random
 import time
+import sys
 
 CARD_VALUES = {
     '2': 2,
@@ -206,8 +207,33 @@ class WarGame:
                 print('Tie, but first player has no more cards.')
 
 # TODO: def main and maybe handle command-line arguments?
+'''
+Added 'main' class, which provides functionality for user input of the number of rounds before starting the game.
+'''
+def main():
 
-game = WarGame(50)
-while not game.ended:
-    game.play_round()
-    time.sleep(1)
+    '''
+The user can set the desired number of rounds when starting the program.
+If a number between 1 and 100 is entered, it becomes the maximum number of rounds.
+If nothing is entered, a non-numeric value is entered, or a number outside the range of 1-100, then the standard value (50 rounds) will be set.
+
+    '''
+    max_rounds = 50
+
+    if len(sys.argv) > 1 and sys.argv[1].isdigit:
+        input_rounds = int(sys.argv[1])
+        if  1 <  input_rounds < 100:
+            max_rounds = input_rounds
+
+    print(f"Maximum number of rounds set:{max_rounds}")
+    game = WarGame(max_rounds)
+    
+
+    while not game.ended:
+        game.play_round()
+        time.sleep(1)
+
+if __name__ == "__main__":
+    main()
+
+
